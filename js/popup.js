@@ -35,6 +35,7 @@ var _list = function(){
 
 			if(content != ''){
 				var json_str = JSON.parse( content );
+                json_str.bonus = json_str.bonus || 0;
 
 				var light = '';
 
@@ -48,14 +49,17 @@ var _list = function(){
 				var fene = isBlank(json_str.fene) ? '' : parseFloat(json_str.fene);
 				var jingzhi = isBlank(json_str.jingzhi) ? '' : parseFloat(json_str.jingzhi);
 				var jingzhi_time = isBlank(json_str.jingzhi_time) ? '' : '( '+json_str.jingzhi_time+' )';
-				//盈亏估算 = 持有份额 * 最新价格 - 成本价 * 持有份额
-				var yingkui = fene == '' || isBlank(json_str.now) ? '-' : (fene * parseFloat(json_str.now) - json_str.buy * fene).toFixed(2) ;
+				//盈亏估算 = 基金分红 + 持有份额 * 最新价格 - 成本价 * 持有份额
+				var yingkui_gusuan = fene == '' || isBlank(json_str.now) ? '-' : (+json_str.bonus + fene * parseFloat(json_str.now) - json_str.buy * fene).toFixed(1);
                 if(isNumeric(yingkui)){
                     total += parseFloat(yingkui);
                 }
 
-                //持有收益 = 持有份额 * 单位净值 - 成本价 * 持有份额
-				var yingkui_jingzhi = fene == '' || jingzhi == '' ? '-' : (fene * parseFloat(jingzhi) - json_str.buy * fene).toFixed(2) ;
+                //持有收益 = 基金分红 + 持有份额 * 单位净值 - 成本价 * 持有份额
+				var yingkui_jingzhi = fene == '' || jingzhi == '' ? '-' : (+json_str.bonus + fene * parseFloat(jingzhi) - json_str.buy * fene).toFixed(1);
+
+                //今日盈亏
+                var yingkui = (yingkui_gusuan - yingkui_jingzhi).toFixed(1);
                 if(isNumeric(yingkui_jingzhi)){
                     total_jingzhi += parseFloat(yingkui_jingzhi);
                 }
@@ -85,23 +89,20 @@ var _list = function(){
                     '</td>' +
 						'<td class="am-text-middle" title="'+json_str.name+'">'+json_str.code+' <i class="view-fund am-icon-external-link" data="'+json_str.code+'"></i></td>' +
 						'<td class="am-text-middle"><input type="text" class="am-text-center input-size" value="'+json_str.buy+'"  placeholder-text="购入价格"  name="buy" /></td>' +
-						'<td class="am-text-middle">' +
-                    '<input type="text" class="am-text-center input-size" value="'+json_str.adding+'"  placeholder-text="补仓价格提醒" name="adding" />' +
-						'</td>' +
-						'<td class="am-text-middle">' +
-							'<input type="text" class="am-text-center input-size" value="'+json_str.sell+'"  placeholder-text="卖出价格提醒" name="sell" />' +
-						'</td>' +
                     '<td class="am-text-middle">' +
                     '<input type="text" class="am-text-center input-size" value="'+fene+'" placeholder-text="持有份额" name="fene" />' +
                     '</td>' +
+                    '<td class="am-text-middle">' +
+                    '<input type="text" class="am-text-center input-size" value="'+(json_str.bonus || 0)+'" placeholder-text="基金分红" name="bonus" />' +
+                    '</td>' +
 						'<td class="am-text-middle" title="最后更新时间: '+json_str.gztime+'">'+json_str.now+'</td>' +
 						'<td class="am-text-middle">'+yingkui+'</td>' +
-						'<td class="am-text-middle am-show-lg-only">'+jingzhi+'<span class="am-text-xs am-block">'+jingzhi_time+'</span></td>' +
-						'<td class="am-text-middle am-show-lg-only">'+yingkui_jingzhi+'</td>' +
+						'<td class="am-text-middle">'+jingzhi+'<span class="am-text-xs am-block">'+jingzhi_time+'</span></td>' +
+						'<td class="am-text-middle">'+yingkui_jingzhi+'</td>' +
 						'<td class="am-text-middle"><div class="am-inline-block">' +
 							'<span class="am-btn am-btn-xs am-btn-primary" data="'+json_str.code+'">修改</span>' +
-							'<span class="am-btn am-btn-xs am-btn-warning fund-analyze" data="'+json_str.code+'">分析</span>' +
-							'<span class="am-btn am-btn-xs am-btn-danger am-show-lg-only" data="'+json_str.code+'">删除</span>' +
+							// '<span class="am-btn am-btn-xs am-btn-warning fund-analyze" data="'+json_str.code+'">分析</span>' +
+							'<span class="am-btn am-btn-xs am-btn-danger" data="'+json_str.code+'">删除</span>' +
 						'</div></td>' +
                     '</tr>';
 			}
