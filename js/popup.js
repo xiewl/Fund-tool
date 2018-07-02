@@ -25,6 +25,7 @@ var _list = function(){
 
 
 	$('.fund_list').remove();
+    var totalMoney = 0;
     var total = 0;
     var total_jingzhi = 0;
     var append_str = '';
@@ -51,6 +52,9 @@ var _list = function(){
 				var jingzhi_time = isBlank(json_str.jingzhi_time) ? '' : '( '+json_str.jingzhi_time+' )';
 				//盈亏估算 = 基金分红 + 持有份额 * 最新价格 - 成本价 * 持有份额
 				var yingkui_gusuan = fene == '' || isBlank(json_str.now) ? '-' : (+json_str.bonus + fene * parseFloat(json_str.now) - json_str.buy * fene).toFixed(1);
+
+				totalMoney += fene * parseFloat(jingzhi);
+
                 if(isNumeric(yingkui)){
                     total += parseFloat(yingkui);
                 }
@@ -110,6 +114,7 @@ var _list = function(){
 	}
     $('#add').after(append_str);
 
+	$('.total-money').text(totalMoney.toFixed(2));
 	$('.total').html(total.toFixed(2));
 	$('.total_jingzhi').html(total_jingzhi.toFixed(2));
 
