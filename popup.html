@@ -1,133 +1,135 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>我的基金</title>
-	<meta charset="utf-8"/>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<link rel="stylesheet" href="assets/css/amazeui.min.css">
-	<script type="text/javascript" src="js/jquery-1.8.3.js"></script>
-	<script type="text/javascript" src="js/dialog.js"></script>
-	<script type="text/javascript" src="js/moment.js"></script>
-	<script type="text/javascript" src="js/common.js"></script>
-	<script type="text/javascript" src="js/popup.js"></script>
-	<style>
-		body {
-			min-width: 65rem;
-			min-height: 400px;
-		}
-		.am-link-cursor, .view-fund{
-			cursor: pointer;
-		}
-		.zan-img{
-			display: none;
-		}
-		.zan-img img{
-			width: 30rem;
-		}
-		.input-size{
-			width: 5.4rem;
-		}
-	</style>
+    <title>我的基金</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" href="assets/css/amazeui.min.css">
+    <script type="text/javascript" src="js/jquery-1.8.3.js"></script>
+    <script type="text/javascript" src="js/dialog.js"></script>
+    <script type="text/javascript" src="js/moment.js"></script>
+    <script type="text/javascript" src="js/common.js"></script>
+    <script type="text/javascript" src="js/popup.js"></script>
+    <style>
+        body {
+            min-width: 65rem;
+            min-height: 400px;
+        }
+
+        .am-link-cursor, .view-fund {
+            cursor: pointer;
+        }
+
+        .zan-img {
+            display: none;
+        }
+
+        .zan-img img {
+            width: 30rem;
+        }
+
+        .input-size {
+            width: 5.4rem;
+        }
+    </style>
 </head>
 <body>
 <div class=" am-padding">
-	<div class="zan-img am-padding-0"><img src="img/zan.jpg"></div>
-	<div class="am-cf">
+    <div class="zan-img am-padding-0"><img src="img/zan.jpg"></div>
+    <div class="am-cf">
 
-		<div class="am-g">
-			<div class="am-u-sm-8">
-				<strong class="am-text-primary am-text-lg">我的基金
-				</strong> /
-				<small>
-					<span class="am-link-cursor refresh am-text-secondary am-margin-right-xs"><i class="am-icon-refresh"></i> 刷新</span>
-					<span class="am-link-cursor document am-margin-right-xs"><i class="am-icon-book"></i> 帮助文档</span>
-					<span class="am-link-cursor zan am-text-danger am-margin-right-xs"><i class="am-icon-plug"></i> 捐赠支持</span>
-					<span class="am-link-cursor popup am-margin-right-xs"><i class="am-icon-arrows-alt"></i> 详细列表</span>
-					<span class="am-link-cursor bak am-margin-right-xs"><i class="am-icon-cloud-upload"></i> 云备份</span>
-				</small>
-			</div>
-			<div class="am-u-sm-4 am-text-right">
-				<strong class="am-text-primary am-text-lg">&nbsp;
-				</strong>
-				<small>
-					<span class="am-link-cursor fund-source am-margin-right-xs" style="color: #c7c7c7"> 数据来源：天天基金</span>
-				</small>
-			</div>
-		</div>
-	</div>
-	<hr data-am-widget="divider" style="" class="am-divider am-divider-dashed" />
+        <div class="am-g">
+            <div class="am-u-sm-8">
+                <strong class="am-text-primary am-text-lg">我的基金 </strong> /
+                <small>
+                    <span class="am-link-cursor refresh am-text-secondary am-margin-right-xs"><i
+                        class="am-icon-refresh"></i> 刷新</span> <span class="am-link-cursor document am-margin-right-xs"><i
+                    class="am-icon-book"></i> 帮助文档</span> <span
+                    class="am-link-cursor zan am-text-danger am-margin-right-xs"><i
+                    class="am-icon-plug"></i> 捐赠支持</span> <span class="am-link-cursor popup am-margin-right-xs"><i
+                    class="am-icon-arrows-alt"></i> 详细列表</span> <span class="am-link-cursor bak am-margin-right-xs"><i
+                    class="am-icon-cloud-upload"></i> 云备份</span>
+                </small>
+            </div>
+            <div class="am-u-sm-4 am-text-right">
+                <strong class="am-text-primary am-text-lg">&nbsp; </strong>
+                <small>
+                    <span class="am-link-cursor fund-source am-margin-right-xs" style="color: #c7c7c7"> 数据来源：天天基金</span>
+                </small>
+            </div>
+        </div>
+    </div>
+    <hr data-am-widget="divider" style="" class="am-divider am-divider-dashed" />
 
-	<div class="am-show-lg-only am-margin-bottom">
-		<select name="notice_type">
-			<option value="">请选择通知设置</option>
-			<option value="1">开启所有通知</option>
-			<option value="2">暂停所有通知</option>
-			<option value="4" class="am-text-danger">暂停卖出通知</option>
-			<option value="6" class="am-text-success">暂停补仓通知</option>
-		</select>
-		<span class="am-btn am-btn-xs am-btn-success update-notice"><i class="am-icon-cog"></i> 更改设置</span>
-		<span class="am-link-muted am-text-xs am-margin-left-sm">
+    <div class="am-show-lg-only am-margin-bottom">
+        <select name="notice_type">
+            <option value="">请选择通知设置</option>
+            <option value="1">开启所有通知</option>
+            <option value="2">暂停所有通知</option>
+            <option value="4" class="am-text-danger">暂停卖出通知</option>
+            <option value="6" class="am-text-success">暂停补仓通知</option>
+        </select> <span class="am-btn am-btn-xs am-btn-success update-notice"><i class="am-icon-cog"></i> 更改设置</span>
+        <span class="am-link-muted am-text-xs am-margin-left-sm">
 			下列图标表示对应的通知已被暂停：
 			<i class="am-icon-pause"></i> 暂停所有通知
 			<i class="am-icon-line-chart"></i> 暂停卖出通知
 			<i class="am-icon-sort-amount-desc"></i> 暂停补仓通知
 		</span>
-	</div>
+    </div>
 
-	<table class="am-table am-table-bordered am-table-striped am-table-hover am-text-sm am-text-center">
-		<tr>
-			<th class="am-text-center am-show-lg-only">
-				<label class="am-checkbox-inline">
-					<input type="checkbox" class="checkbox-all">
-					<strong>基金名称</strong>
-				</label>
-			</th>
-			<th class="am-text-center">基金代码</th>
-			<th class="am-text-center">成本价</th>
-			<th class="am-text-center">持有份额</th>
-			<th class="am-text-center">基金分红</th>
-			<th class="am-text-center">估值</th>
-			<th class="am-text-center">估值盈亏</th>
-			<th class="am-text-center">净值</th>
-			<th class="am-text-center">持有收益</th>
-			<th class="am-text-center">操作</th>
-		</tr>
-		<tr id="add">
-			<td class="am-text-middle am-show-lg-only"></td>
-			<td class="am-text-middle">
-				<input type="text" class="am-text-center input-size" value=""  placeholder-text="基金代码" name="code" />
-			</td>
-			<td class="am-text-middle">
-				<input type="text" class="am-text-center input-size" value=""  placeholder-text="购入价格"  name="buy" />
-			</td>
-			<td class="am-text-middle">
-				<input type="text" class="am-text-center input-size" value="" placeholder-text="持有份额"  name="fene" />
-			</td>
-			<td class="am-text-middle">
-				<input type="text" class="am-text-center input-size" value="" placeholder-text="基金分红"  name="bonus" />
-			</td>
-			<td class="am-text-middle">-</td>
-			<td class="am-text-middle">-</td>
-			<td class="am-text-middle">-</td>
-			<td class="am-text-middle">-</td>
-			<td class="am-text-middle"><span class="am-btn am-btn-xs am-btn-success">新增</span></td>
-		</tr>
-		<tr>
-			<td colspan="1"></td>
-			<td>总价值</td>
-			<td class="total-money"></td>
-			<td colspan="2"></td>
-			<td>估值盈亏</td>
-			<td class="total"></td>
-			<td class="">持有收益</td>
-			<td class="total_jingzhi">-</td>
-			<td class="am-show-lg-only"></td>
-		</tr>
-	</table>
+    <table class="am-table am-table-bordered am-table-striped am-table-hover am-text-sm am-text-center">
+        <tr>
+            <th class="am-text-center am-show-lg-only">
+                <label class="am-checkbox-inline"> <input type="checkbox" class="checkbox-all"> <strong>基金名称</strong>
+                </label>
+            </th>
+            <th class="am-text-center am-show-lg-only">基金代码</th>
+            <th class="am-text-center">成本价</th>
+            <th class="am-text-center">持有份额</th>
+            <th class="am-text-center">基金分红</th>
+            <th class="am-text-center">估值盈亏</th>
+            <th class="am-text-center">净值</th>
+            <th class="am-text-center">持有收益</th>
+            <th class="am-text-center">持有收益率</th>
+            <th class="am-text-center">操作</th>
+        </tr>
+        <tr id="add" class="am-show-lg-only">
+            <td class="am-text-middle"></td>
+            <td class="am-text-middle">
+                <input type="text" class="am-text-center input-size" value="" placeholder-text="基金代码" name="code" />
+            </td>
+            <td class="am-text-middle">
+                <input type="text" class="am-text-center input-size" value="" placeholder-text="购入价格" name="buy" />
+            </td>
+            <td class="am-text-middle">
+                <input type="text" class="am-text-center input-size" value="" placeholder-text="持有份额" name="fene" />
+            </td>
+            <td class="am-text-middle">
+                <input type="text" class="am-text-center input-size" value="" placeholder-text="基金分红" name="bonus" />
+            </td>
+            <td class="am-text-middle">-</td>
+            <td class="am-text-middle">-</td>
+            <td class="am-text-middle">-</td>
+            <td class="am-text-middle">-</td>
+            <td class="am-text-middle"><span class="am-btn am-btn-xs am-btn-success">新增</span></td>
+        </tr>
+        <tr>
+            <td>总价值</td>
+            <td class="total-money"></td>
+            <td class="am-show-lg-only"></td>
+            <td class="am-show-lg-only"></td>
+            <td>估值盈亏</td>
+            <td class="total"></td>
+            <td class="">持有收益</td>
+            <td class="total_jingzhi">-</td>
+            <td></td>
+            <td></td>
+        </tr>
+    </table>
 </div>
 <div class="help_content am-padding-xs" style="display: none">
-	<p>若您是初次使用本扩展，对功能不熟悉的话，请点击《帮助文档》，该文档将会详细介绍本扩展使用的方法。</p>
-	<p>点击 X 按钮，引导功能将不再显示</p>
+    <p>若您是初次使用本扩展，对功能不熟悉的话，请点击《帮助文档》，该文档将会详细介绍本扩展使用的方法。</p>
+    <p>点击 X 按钮，引导功能将不再显示</p>
 </div>
 </body>
 </html>

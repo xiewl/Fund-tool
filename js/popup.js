@@ -62,6 +62,9 @@ var _list = function(){
                 //持有收益 = 基金分红 + 持有份额 * 单位净值 - 成本价 * 持有份额
 				var yingkui_jingzhi = fene == '' || jingzhi == '' ? '-' : (+json_str.bonus + fene * parseFloat(jingzhi) - json_str.buy * fene).toFixed(1);
 
+                // 持有收益率
+                var yingkui_percent = (yingkui_jingzhi * 100 / (json_str.buy * fene)).toFixed(2) + '%';
+
                 //今日盈亏
                 var yingkui = (yingkui_gusuan - yingkui_jingzhi).toFixed(1);
                 if(isNumeric(yingkui_jingzhi)){
@@ -91,7 +94,7 @@ var _list = function(){
                     '<label class="am-checkbox-inline"><input name="notice[]" type="checkbox" value="'+json_str.code+'"> '+json_str.name+' <i class="'+notice_icon+'"></i> </label>' +
 
                     '</td>' +
-						'<td class="am-text-middle" title="'+json_str.name+'">'+json_str.code+' <i class="view-fund am-icon-external-link" data="'+json_str.code+'"></i></td>' +
+						'<td class="am-text-middle am-show-lg-only" title="'+json_str.name+'">'+json_str.code+' <i class="view-fund am-icon-external-link" data="'+json_str.code+'"></i></td>' +
 						'<td class="am-text-middle"><input type="text" class="am-text-center input-size" value="'+json_str.buy+'"  placeholder-text="购入价格"  name="buy" /></td>' +
                     '<td class="am-text-middle">' +
                     '<input type="text" class="am-text-center input-size" value="'+fene+'" placeholder-text="持有份额" name="fene" />' +
@@ -99,10 +102,10 @@ var _list = function(){
                     '<td class="am-text-middle">' +
                     '<input type="text" class="am-text-center input-size" value="'+(json_str.bonus || 0)+'" placeholder-text="基金分红" name="bonus" />' +
                     '</td>' +
-						'<td class="am-text-middle" title="最后更新时间: '+json_str.gztime+'">'+json_str.now+'</td>' +
-						'<td class="am-text-middle">'+yingkui+'</td>' +
+						'<td class="am-text-middle" title="最后更新时间: '+json_str.gztime+'">'+yingkui+'</td>' +
 						'<td class="am-text-middle">'+jingzhi+'<span class="am-text-xs am-block">'+jingzhi_time+'</span></td>' +
 						'<td class="am-text-middle">'+yingkui_jingzhi+'</td>' +
+						'<td class="am-text-middle">'+yingkui_percent+'</td>' +
 						'<td class="am-text-middle"><div class="am-inline-block">' +
 							'<span class="am-btn am-btn-xs am-btn-primary" data="'+json_str.code+'">修改</span>' +
 							// '<span class="am-btn am-btn-xs am-btn-warning fund-analyze" data="'+json_str.code+'">分析</span>' +
